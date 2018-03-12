@@ -11,6 +11,7 @@ Project: https://github.com/aymericdamien/TensorFlow-Examples/
 from __future__ import division, print_function, absolute_import
 
 import tensorflow as tf
+import time
 
 # Import MNIST data
 from tensorflow.examples.tutorials.mnist import input_data
@@ -112,6 +113,7 @@ accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
 
 # Initialize the variables (i.e. assign their default value)
 init = tf.global_variables_initializer()
+t1 = time.time()
 
 # Start training
 with tf.Session() as sess:
@@ -133,7 +135,8 @@ with tf.Session() as sess:
                   "{:.3f}".format(acc))
 
     print("Optimization Finished!")
-
+    t2 = time.time()
+    print ("Time Elapsed:",t2-t1)
     # Calculate accuracy for 256 MNIST test images
     print("Testing Accuracy:", \
         sess.run(accuracy, feed_dict={X: mnist.test.images[:256],
